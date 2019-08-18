@@ -1,0 +1,29 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String!
+  picture: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Pin {
+  id: ID! @id
+  title: String!
+  content: String!
+  image: String!
+  latitude: Int
+  longitude: Int
+  author: User!
+  comments: [Comment!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Comment {
+  id: ID! @id
+  text: String!
+  author: User!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
