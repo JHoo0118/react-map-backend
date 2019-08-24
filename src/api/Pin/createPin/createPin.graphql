@@ -1,0 +1,9 @@
+type Mutation {
+  createPin(
+    title: String!
+    content: String!
+    image: String!
+    latitude: Float
+    longitude: Float
+  ): Pin!
+}

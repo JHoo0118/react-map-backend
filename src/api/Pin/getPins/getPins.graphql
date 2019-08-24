@@ -1,0 +1,3 @@
+type Query {
+  getPins: [Pin]!
+}
