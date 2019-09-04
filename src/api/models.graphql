@@ -26,6 +26,7 @@ type Comment {
   id: ID!
   text: String!
   author: User!
+  pin: Pin!
   createdAt: String
   updatedAt: String
 }

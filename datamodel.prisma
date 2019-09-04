@@ -19,7 +19,7 @@ type Pin {
   latitude: Float!
   longitude: Float!
   author: User
-  comments: [Comment!]!
+  comments: [Comment!]! @relation(name: "CommentOfPin", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -28,6 +28,7 @@ type Comment {
   id: ID! @id
   text: String!
   author: User!
+  pin: Pin @relation(name: "CommentOfPin")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
