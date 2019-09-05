@@ -1,12 +1,13 @@
 type User {
   id: ID! @id
-  name: String!
+  name: String! @unique
   email: String! @unique
   password: String!
   picture: String @default(
-    value: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMmMyLjc1NyAwIDUgMi4yNDMgNSA1LjAwMSAwIDIuNzU2LTIuMjQzIDUtNSA1cy01LTIuMjQ0LTUtNWMwLTIuNzU4IDIuMjQzLTUuMDAxIDUtNS4wMDF6bTAtMmMtMy44NjYgMC03IDMuMTM0LTcgNy4wMDEgMCAzLjg2NSAzLjEzNCA3IDcgN3M3LTMuMTM1IDctN2MwLTMuODY3LTMuMTM0LTcuMDAxLTctNy4wMDF6bTYuMzY5IDEzLjM1M2MtLjQ5Ny40OTgtMS4wNTcuOTMxLTEuNjU4IDEuMzAyIDIuODcyIDEuODc0IDQuMzc4IDUuMDgzIDQuOTcyIDcuMzQ2aC0xOS4zODdjLjU3Mi0yLjI5IDIuMDU4LTUuNTAzIDQuOTczLTcuMzU4LS42MDMtLjM3NC0xLjE2Mi0uODExLTEuNjU4LTEuMzEyLTQuMjU4IDMuMDcyLTUuNjExIDguNTA2LTUuNjExIDEwLjY2OWgyNGMwLTIuMTQyLTEuNDQtNy41NTctNS42MzEtMTAuNjQ3eiIvPjwvc3ZnPg=="
+    value: "https://img.icons8.com/dusk/64/000000/cat-profile.png"
   )
-  pins: [Pin!]!
+  comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
+  pins: [Pin!]! @relation(name: "PinsOfUser", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -18,7 +19,7 @@ type Pin {
   image: String!
   latitude: Float!
   longitude: Float!
-  author: User
+  author: User @relation(name: "PinsOfUser")
   comments: [Comment!]! @relation(name: "CommentOfPin", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -27,7 +28,7 @@ type Pin {
 type Comment {
   id: ID! @id
   text: String!
-  author: User!
+  author: User! @relation(name: "CommentsOfUser")
   pin: Pin @relation(name: "CommentOfPin")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

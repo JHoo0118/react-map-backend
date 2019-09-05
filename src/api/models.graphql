@@ -4,7 +4,9 @@ type User {
   email: String!
   password: String!
   picture: String
+  comments: [Comment!]!
   pins: [Pin!]!
+  isSelf: Boolean!
   createdAt: String
   updatedAt: String
 }
