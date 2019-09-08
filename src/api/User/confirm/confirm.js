@@ -1,4 +1,4 @@
-import { generateToken } from "../../../../utils";
+import { generateToken } from "../../../utils";
 import { prisma } from "../../../../generated/prisma-client";
 
 export default {
